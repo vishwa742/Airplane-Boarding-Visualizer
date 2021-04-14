@@ -16,6 +16,33 @@ const NewBoard = () => {
 
   const DEF_DELAY = 1000;
 
+  //Updating Row wise
+  //   const onCellClick = (rowIdx, cellIdx) => {
+  //     for (let i = 0; i <= rowIdx; i++) {
+  //       for (let j = 0; j <= cellIdx; j++) {
+  //         setTimeout(() => {
+  //           boardIndeces[i][j] = 1;
+  //           setBoardIndeces([...boardIndeces]);
+  //           console.log(j);
+  //         }, 1000 * i);
+  //       }
+  //     }
+  //   };
+
+  //Updating Row Wise
+  //   const onCellClick = (rowIdx, cellIdx) => {
+  //     for (let i = 0; i <= rowIdx; i++) {
+  //       for (let j = 0; j <= cellIdx; j++) {
+  //         setTimeout(() => {
+  //           boardIndeces[i][j] = 1;
+  //           setBoardIndeces([...boardIndeces]);
+  //           console.log(j);
+  //         }, 1000 * j);
+  //       }
+  //     }
+  //   };
+
+  // Updating Diagonally
   const onCellClick = (rowIdx, cellIdx) => {
     for (let i = 0; i <= rowIdx; i++) {
       for (let j = 0; j <= cellIdx; j++) {
@@ -24,7 +51,6 @@ const NewBoard = () => {
             boardIndeces[i][j] = 1;
             setBoardIndeces([...boardIndeces]);
           }, 1000 * i);
-
           console.log(j);
         }, 1000 * j);
       }
