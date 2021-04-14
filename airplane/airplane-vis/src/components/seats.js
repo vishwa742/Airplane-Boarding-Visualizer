@@ -8,40 +8,6 @@ const NewBoard = () => {
     new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
   );
 
-  const [rowLoc, setRowLoc] = useState([]);
-  const [colLoc, setColLoc] = useState([]);
-  const [ivalue, setIvalue] = useState(2);
-
-  const [combinedPos, setCombinedPos] = useState([]);
-  const [tempPos, setTempPos] = useState("");
-  const alpArray = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "z",
-  ];
-
   const initArray = new Array(BOARD_SIZE)
     .fill(0)
     .map((row) => new Array(BOARD_SIZE).fill(0));
@@ -51,12 +17,16 @@ const NewBoard = () => {
   const DEF_DELAY = 1000;
 
   const onCellClick = (rowIdx, cellIdx) => {
-    // setIvalue(ivalue + 1);
-    for (var i = 0; i <= rowIdx; i++) {
-      for (var j = 0; j <= cellIdx; j++) {
-        boardIndeces[i][j] = 1;
-        setBoardIndeces([...boardIndeces]);
-        console.log(boardIndeces);
+    for (let i = 0; i <= rowIdx; i++) {
+      for (let j = 0; j <= cellIdx; j++) {
+        setTimeout(() => {
+          setTimeout(() => {
+            boardIndeces[i][j] = 1;
+            setBoardIndeces([...boardIndeces]);
+          }, 1000 * i);
+
+          console.log(j);
+        }, 1000 * j);
       }
     }
   };

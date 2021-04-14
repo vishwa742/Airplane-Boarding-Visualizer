@@ -3,8 +3,6 @@
   min-height: 100%;
   min-width: 100%;
   position: absolute;
-  align-items: center;
-  justify-content: center;
 }
 
 .inactive_class {
