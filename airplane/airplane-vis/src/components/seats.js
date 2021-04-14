@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import "./seats.css";
 
 const BOARD_SIZE = 11;
+const rowSize = 12;
+const colSize = 9;
 
 const NewBoard = () => {
   const [board, setBoard] = useState(
-    new Array(BOARD_SIZE).fill(0).map((row) => new Array(BOARD_SIZE).fill(0))
+    new Array(rowSize).fill(0).map((row) => new Array(colSize).fill(0))
   );
 
-  const initArray = new Array(BOARD_SIZE)
+  const initArray = new Array(rowSize)
     .fill(0)
-    .map((row) => new Array(BOARD_SIZE).fill(0));
+    .map((colSize) => new Array(BOARD_SIZE).fill(0));
 
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
