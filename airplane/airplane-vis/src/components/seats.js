@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./seats.css";
+import Image from "./download1.png";
+import Test from "./test1.png";
 
 const BOARD_SIZE = 11;
 const rowSize = 3;
-const colSize = 20;
+const colSize = 40;
 
 const NewBoard = () => {
   const [board, setBoard] = useState(
@@ -19,42 +21,42 @@ const NewBoard = () => {
   const DEF_DELAY = 1000;
 
   //Updating Row wise
-  //   const onCellClick = (rowIdx, cellIdx) => {
-  //     for (let i = 0; i <= rowIdx; i++) {
-  //       for (let j = 0; j <= cellIdx; j++) {
-  //         setTimeout(() => {
-  //           boardIndeces[i][j] = 1;
-  //           setBoardIndeces([...boardIndeces]);
-  //           console.log(j);
-  //         }, 1000 * i);
-  //       }
-  //     }
-  //   };
+  const onCellClick1 = () => {
+    for (let i = 0; i < rowSize; i++) {
+      for (let j = 0; j < colSize; j++) {
+        setTimeout(() => {
+          boardIndeces[i][j] = 1;
+          setBoardIndeces([...boardIndeces]);
+          console.log(j);
+        }, 1000 * i);
+      }
+    }
+  };
 
-  //Updating Row Wise
-  //   const onCellClick = (rowIdx, cellIdx) => {
-  //     for (let i = 0; i <= rowIdx; i++) {
-  //       for (let j = 0; j <= cellIdx; j++) {
-  //         setTimeout(() => {
-  //           boardIndeces[i][j] = 1;
-  //           setBoardIndeces([...boardIndeces]);
-  //           console.log(j);
-  //         }, 1000 * j);
-  //       }
-  //     }
-  //   };
+  //Updating Col Wise
+  const onCellClick = () => {
+    for (let i = 0; i < rowSize; i++) {
+      for (let j = 0; j < colSize; j++) {
+        setTimeout(() => {
+          boardIndeces[i][j] = 1;
+          setBoardIndeces([...boardIndeces]);
+          console.log(j);
+        }, 1000 * j);
+      }
+    }
+  };
 
   // Updating Diagonally
-  const onCellClick = () => {
+  const onCellClick3 = () => {
     for (let i = 0; i < rowSize; i++) {
       for (let j = 0; j < colSize; j++) {
         setTimeout(() => {
           setTimeout(() => {
             boardIndeces[i][j] = 1;
             setBoardIndeces([...boardIndeces]);
-          }, 1000 * i);
+          }, 500 * i);
           console.log(j);
-        }, 1000 * j);
+        }, 500 * j);
       }
     }
   };
@@ -76,7 +78,13 @@ const NewBoard = () => {
                       ? "inactive_class"
                       : "cell_Clicked"
                   }
-                ></div>
+                >
+                  <img
+                    src={boardIndeces[rowIdx][cellIdx] === 0 ? Image : Test}
+                    width="35.69px"
+                    height="44.69px"
+                  ></img>
+                </div>
               ))}
             </div>
           ))}
@@ -95,7 +103,13 @@ const NewBoard = () => {
                       ? "inactive_class"
                       : "cell_Clicked"
                   }
-                ></div>
+                >
+                  <img
+                    src={boardIndeces[rowIdx][cellIdx] === 0 ? Image : Test}
+                    width="35.69px"
+                    height="44.69px"
+                  ></img>
+                </div>
               ))}
             </div>
           ))}

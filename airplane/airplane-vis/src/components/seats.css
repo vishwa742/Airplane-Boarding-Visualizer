@@ -1,5 +1,5 @@
 .body {
-  background-color: rgba(0, 0, 0, 0.822);
+  background-color: rgba(106, 220, 248, 0.822);
   min-height: 100%;
   min-width: 100%;
   position: absolute;
@@ -13,7 +13,6 @@
 
 .space {
   height: 20px;
-  background-color: black;
   margin-bottom: 10px;
   margin-top: 10px;
 }
@@ -29,7 +28,6 @@
   border-radius: 3px;
   display: inline-block;
   margin: 5px;
-  background-color: orange;
   transition: transform 0.2s;
 }
 
@@ -48,7 +46,6 @@
   border-radius: 3px;
   display: inline-block;
   margin: 5px;
-  background-color: mediumspringgreen;
   transition: transform 0.2s;
 }
 
