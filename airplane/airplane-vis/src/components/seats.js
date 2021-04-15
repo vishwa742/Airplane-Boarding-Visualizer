@@ -34,10 +34,23 @@ const NewBoard = () => {
     }
   };
 
-  //Updating Col Wise
-  const onCellClick = () => {
+  //Updating Col Wise F2B
+  const onCellClick2 = () => {
     for (let i = 0; i < rowSize; i++) {
       for (let j = 0; j < colSize; j++) {
+        setTimeout(() => {
+          boardIndeces[i][j] = 1;
+          setBoardIndeces([...boardIndeces]);
+          console.log(j);
+        }, 1000 * j);
+      }
+    }
+  };
+
+  // Only Middle Col
+  const onCellClick = () => {
+    for (let i = rowSize - 2; i > 0; i--) {
+      for (let j = colSize - 2; j > 0; j--) {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
@@ -80,7 +93,7 @@ const NewBoard = () => {
             <div className="dacols">
               {board.map((row, rowIdx) => (
                 <div key={rowIdx} className="row">
-                  {/* {alpArray[rowIdx]} */}
+                  {/* {rowIdx} */}
 
                   {row.map((cell, cellIdx) => (
                     <div
