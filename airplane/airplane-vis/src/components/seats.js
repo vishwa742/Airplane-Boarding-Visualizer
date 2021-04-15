@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./seats.css";
 
 const BOARD_SIZE = 11;
-const rowSize = 12;
-const colSize = 9;
+const rowSize = 3;
+const colSize = 20;
 
 const NewBoard = () => {
   const [board, setBoard] = useState(
@@ -12,7 +12,7 @@ const NewBoard = () => {
 
   const initArray = new Array(rowSize)
     .fill(0)
-    .map((colSize) => new Array(BOARD_SIZE).fill(0));
+    .map((rand) => new Array(colSize).fill(0));
 
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
@@ -45,9 +45,9 @@ const NewBoard = () => {
   //   };
 
   // Updating Diagonally
-  const onCellClick = (rowIdx, cellIdx) => {
-    for (let i = 0; i <= rowIdx; i++) {
-      for (let j = 0; j <= cellIdx; j++) {
+  const onCellClick = () => {
+    for (let i = 0; i < rowSize; i++) {
+      for (let j = 0; j < colSize; j++) {
         setTimeout(() => {
           setTimeout(() => {
             boardIndeces[i][j] = 1;
@@ -61,29 +61,46 @@ const NewBoard = () => {
 
   return (
     <>
-      <div className="body">
-        <div className="container">
-          <div className="board">
-            {board.map((row, rowIdx) => (
-              <div key={rowIdx} className="row">
-                {/* {alpArray[rowIdx]} */}
+      <span className="body">
+        <button onClick={onCellClick}>Test</button>
+        <div className="dacols">
+          {board.map((row, rowIdx) => (
+            <div key={rowIdx} className="row">
+              {/* {alpArray[rowIdx]} */}
 
-                {row.map((cell, cellIdx) => (
-                  <div
-                    key={cellIdx}
-                    className={
-                      boardIndeces[rowIdx][cellIdx] === 0
-                        ? "inactive_class"
-                        : "cell_Clicked"
-                    }
-                    onClick={() => onCellClick(rowIdx, cellIdx)}
-                  ></div>
-                ))}
-              </div>
-            ))}
-          </div>
+              {row.map((cell, cellIdx) => (
+                <div
+                  key={cellIdx}
+                  className={
+                    boardIndeces[rowIdx][cellIdx] === 0
+                      ? "inactive_class"
+                      : "cell_Clicked"
+                  }
+                ></div>
+              ))}
+            </div>
+          ))}
         </div>
-      </div>
+        <div className="space"></div>
+        <div className="dacols">
+          {board.map((row, rowIdx) => (
+            <div key={rowIdx} className="row">
+              {/* {alpArray[rowIdx]} */}
+
+              {row.map((cell, cellIdx) => (
+                <div
+                  key={cellIdx}
+                  className={
+                    boardIndeces[rowIdx][cellIdx] === 0
+                      ? "inactive_class"
+                      : "cell_Clicked"
+                  }
+                ></div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </span>
     </>
   );
 };
