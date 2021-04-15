@@ -19,66 +19,143 @@ const NewBoard = () => {
 
   const [boardIndeces, setBoardIndeces] = useState(initArray);
 
-  const DEF_DELAY = 1000;
+  const createRandom = (min, rowSize) => {
+    const diff = rowSize - min;
+    const random = Math.random();
+    return Math.floor(random * diff + min);
+  };
 
   //Updating Row wise
-  const onCellClick1 = () => {
+  const onCellClickRow = () => {
     for (let i = 0; i < rowSize; i++) {
       for (let j = 0; j < colSize; j++) {
         setTimeout(() => {
+          setTimeout(() => {
+            //  boardIndeces[i][j] = 1;
+            //  setBoardIndeces([...boardIndeces]);
+            console.log("Row", j);
+          }, 1000 * j);
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
-          console.log(j);
+          console.log("Row", j);
         }, 1000 * i);
       }
     }
+    setBoardIndeces(initArray);
   };
 
   //Updating Col Wise F2B
-  const onCellClick2 = () => {
+  const onCellClickCol = () => {
     for (let i = 0; i < rowSize; i++) {
       for (let j = 0; j < colSize; j++) {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
           console.log(j);
-        }, 1000 * j);
+        }, 300 * j);
       }
     }
+    setBoardIndeces(initArray);
   };
 
   // Only Middle Col
-  const onCellClick = () => {
+  const onCellClickMid = () => {
     for (let i = rowSize - 2; i > 0; i--) {
-      for (let j = colSize - 2; j > 0; j--) {
+      for (let j = 0; j < colSize; j++) {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
           console.log(j);
-        }, 1000 * j);
+        }, 300 * j);
       }
+    }
+    setBoardIndeces(...initArray);
+  };
+
+  // Top Row
+  const onCellClickTop = () => {
+    for (let i = 0; i < 1; i++) {
+      for (let j = 0; j < colSize; j++) {
+        setTimeout(() => {
+          boardIndeces[i][j] = 1;
+          setBoardIndeces([...boardIndeces]);
+          console.log(j);
+        }, 300 * j);
+      }
+    }
+    setBoardIndeces(...initArray);
+  };
+
+  // Bottom Row
+  const onCellClickBot = () => {
+    for (let i = 2; i < 3; i++) {
+      for (let j = 0; j < colSize; j++) {
+        setTimeout(() => {
+          boardIndeces[i][j] = 1;
+          setBoardIndeces([...boardIndeces]);
+          console.log(j);
+        }, 300 * j);
+      }
+    }
+    setBoardIndeces(initArray);
+  };
+
+  const onCellClickTopper = () => {
+    let sumArray = 120;
+    let x = 0;
+    while (x < 120) {
+      let randRow = createRandom(0, rowSize);
+      let randCol = createRandom(0, colSize);
+      setTimeout(() => {
+        boardIndeces[randRow][randCol] = 1;
+        setBoardIndeces([...boardIndeces]);
+      }, 300 * randCol);
+
+      x++;
+      console.log(randRow);
+      // console.log(randCol);
+      //console.log(x);
     }
   };
 
+  // Try random seat allocation i - rowLen
+  // j to col len
+  //run until full
+
   // Updating Diagonally
-  const onCellClick3 = () => {
+  const onCellClickDia = () => {
     for (let i = 0; i < rowSize; i++) {
       for (let j = 0; j < colSize; j++) {
         setTimeout(() => {
           setTimeout(() => {
             boardIndeces[i][j] = 1;
             setBoardIndeces([...boardIndeces]);
-          }, 500 * i);
+          }, 300 * i);
           console.log(j);
-        }, 500 * j);
+        }, 300 * j);
       }
     }
+    setBoardIndeces(initArray);
   };
 
   return (
     <>
       <span className="body">
-        <button onClick={onCellClick}>Test</button>
+        <button className="button" onClick={onCellClickTopper}>
+          Col{" "}
+        </button>
+        <button className="button" onClick={onCellClickRow}>
+          Row{" "}
+        </button>
+        <button className="button" onClick={onCellClickTop}>
+          Top{" "}
+        </button>
+        <button className="button" onClick={onCellClickMid}>
+          Mid{" "}
+        </button>
+        <button className="button" onClick={onCellClickBot}>
+          Bot
+        </button>
 
         <div style={{ position: "relative" }}>
           <img src={Plane} width="1490px" height="740px" className="ima"></img>
