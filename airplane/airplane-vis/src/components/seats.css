@@ -4,17 +4,21 @@
   min-width: 100%;
   position: absolute;
 }
-
+/* .plane {
+  background-image: url("./plane2.png");
+  height: 700px;
+  width: 1000px;
+} */
 .inline {
   display: inline-block;
   border: 1px solid red;
-  margin: 10px;
+  margin: 5px;
 }
 
 .space {
-  height: 20px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  height: 15px;
+  margin-bottom: 7px;
+  margin-top: 7px;
 }
 
 .dacols {
