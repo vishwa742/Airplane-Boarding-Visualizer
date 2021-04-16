@@ -100,9 +100,13 @@ const NewBoard = () => {
     setBoardIndeces(initArray);
   };
 
+  // Random Row wise
+  // Use different Color Person for Second Iteration
+  // Set boardIndices to 2 or 3 or 4 etc
   const onCellClickTopper = () => {
     let sumArray = 120;
     let x = 0;
+    var sum = 0;
     while (x < 120) {
       let randRow = createRandom(0, rowSize);
       let randCol = createRandom(0, colSize);
@@ -110,7 +114,6 @@ const NewBoard = () => {
         boardIndeces[randRow][randCol] = 1;
         setBoardIndeces([...boardIndeces]);
       }, 300 * randCol);
-
       x++;
       console.log(randRow);
       // console.log(randCol);
