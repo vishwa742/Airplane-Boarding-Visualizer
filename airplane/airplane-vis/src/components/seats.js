@@ -3,6 +3,15 @@ import "./seats.css";
 import Image from "./download1.png";
 import Test from "./test1.png";
 import Plane from "./plane1.png";
+import Logo from "./logo.png";
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// or less ideally
 
 const BOARD_SIZE = 11;
 const rowSize = 3;
@@ -41,7 +50,6 @@ const NewBoard = () => {
         }, 1000 * i);
       }
     }
-    setBoardIndeces(initArray);
   };
 
   //Updating Col Wise F2B
@@ -143,23 +151,53 @@ const NewBoard = () => {
 
   return (
     <>
-      <span className="body">
+      <table
+        style={{
+          backgroundColor: "#000",
+          display: "block",
+          color: "#FFF",
+        }}
+      >
+        <tbody>
+          <tr>
+            <td>
+              <img src={Logo} width="50px"></img>
+            </td>
+            <td>
+              <h3>Ticket Booker</h3>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Boarding Techniques</Navbar.Brand>
         <button className="button" onClick={onCellClickTopper}>
-          Col{" "}
-        </button>
-        <button className="button" onClick={onCellClickRow}>
-          Row{" "}
-        </button>
-        <button className="button" onClick={onCellClickTop}>
-          Top{" "}
-        </button>
-        <button className="button" onClick={onCellClickMid}>
-          Mid{" "}
-        </button>
-        <button className="button" onClick={onCellClickBot}>
-          Bot
+          Randomly Filled Column Wise{" "}
         </button>
 
+        <button className="button" onClick={onCellClickCol}>
+          Column Wise{" "}
+        </button>
+
+        <button className="button" onClick={onCellClickRow}>
+          Row Wise{" "}
+        </button>
+
+        <button className="button" onClick={onCellClickTop}>
+          Top Row First{" "}
+        </button>
+
+        <button className="button" onClick={onCellClickMid}>
+          Mid Row First{" "}
+        </button>
+
+        <button className="button" onClick={onCellClickBot}>
+          Bottom Row First
+        </button>
+      </Navbar>
+
+      <span className="body">
         <div style={{ position: "relative" }}>
           <img src={Plane} width="1490px" height="740px" className="ima"></img>
           <div
