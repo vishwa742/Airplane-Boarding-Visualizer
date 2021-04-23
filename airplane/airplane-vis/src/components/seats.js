@@ -12,12 +12,11 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// or less ideally
-
 const BOARD_SIZE = 11;
 const rowSize = 3;
 const colSize = 40;
 let counter = 0;
+let seen = [];
 
 const NewBoard = () => {
   const [board, setBoard] = useState(
@@ -128,20 +127,21 @@ const NewBoard = () => {
       let randRow = createRandom(0, rowSize);
       let randCol = createRandom(0, colSize);
       y++;
-      setTimeout(() => {
-        x++;
+      let randCombined = String(randRow) + String(randCol);
 
-        //console.log(y);
-        console.log("Counter", counter);
-        boardIndeces[randRow][randCol] = counter;
-        setBoardIndeces([...boardIndeces]);
-      }, 300 * randCol);
+      if (!(randCombined in seen)) {
+        console.log("Seen", seen);
 
-      // console.log(randCol);
-      //console.log(x);
+        seen.push(randCombined);
+        setTimeout(() => {
+          x++;
+          console.log("Counter", counter);
+          boardIndeces[randRow][randCol] = counter;
+          setBoardIndeces([...boardIndeces]);
+        }, 300 * randCol);
+      }
     }
     counter++;
-    //console.log(boardIndeces);
   };
 
   const onCellClickTopper2 = () => {
@@ -152,12 +152,11 @@ const NewBoard = () => {
         while (x < 120) {
           let randRow = createRandom(0, rowSize);
           let randCol = createRandom(0, colSize);
-
           setTimeout(() => {
             boardIndeces[randRow][randCol] = 1;
             setBoardIndeces([...boardIndeces]);
-          }, 300 * j);
-          x += boardIndeces[randRow][randCol];
+          }, 300 * randCol);
+          x++;
           console.log(randRow);
           // console.log(randCol);
           //console.log(x);
@@ -259,11 +258,6 @@ const NewBoard = () => {
                         width="35.69px"
                         height="44.69px"
                       ></img>
-                      {/* <img
-                        src={boardIndeces[rowIdx][cellIdx] === 0 ? Seat: PersonSeat}
-                        width="35.69px"
-                        height="44.69px"
-                      ></img> */}
                     </div>
                   ))}
                 </div>
