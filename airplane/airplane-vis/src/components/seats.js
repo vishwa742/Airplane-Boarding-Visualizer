@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./seats.css";
-import Image from "./download1.png";
-import Test from "./test1.png";
+import Seat from "./onlySeat.png";
+import PersonSeat from "./personSeat.png";
+import PersonSeatO from "./personSeatOrange.png";
 import Plane from "./plane1.png";
 import Logo from "./logo.png";
 import Button from "react-bootstrap/Button";
@@ -16,6 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const BOARD_SIZE = 11;
 const rowSize = 3;
 const colSize = 40;
+let counter = 0;
 
 const NewBoard = () => {
   const [board, setBoard] = useState(
@@ -42,11 +44,11 @@ const NewBoard = () => {
           setTimeout(() => {
             //  boardIndeces[i][j] = 1;
             //  setBoardIndeces([...boardIndeces]);
-            console.log("Row", j);
+            //console.log("Row", j);
           }, 1000 * j);
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
-          console.log("Row", j);
+          //console.log("Row", j);
         }, 1000 * i);
       }
     }
@@ -59,11 +61,16 @@ const NewBoard = () => {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
-          console.log(j);
+          //console.log(j);
         }, 300 * j);
       }
     }
-    setBoardIndeces(initArray);
+    // for (let l = 0; l < rowSize; l++) {
+    //   for (let m = 0; m < colSize; m++) {
+    //     boardIndeces[l][m] = 1;
+    //     setBoardIndeces([...boardIndeces]);
+    //   }
+    // }
   };
 
   // Only Middle Col
@@ -73,7 +80,7 @@ const NewBoard = () => {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
-          console.log(j);
+          //console.log(j);
         }, 300 * j);
       }
     }
@@ -87,7 +94,7 @@ const NewBoard = () => {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
-          console.log(j);
+          //console.log(j);
         }, 300 * j);
       }
     }
@@ -101,7 +108,7 @@ const NewBoard = () => {
         setTimeout(() => {
           boardIndeces[i][j] = 1;
           setBoardIndeces([...boardIndeces]);
-          console.log(j);
+          //console.log(j);
         }, 300 * j);
       }
     }
@@ -115,23 +122,49 @@ const NewBoard = () => {
     let sumArray = 120;
     let x = 0;
     var sum = 0;
-    while (x < 120) {
+    let y = 0;
+
+    while (y < 120) {
       let randRow = createRandom(0, rowSize);
       let randCol = createRandom(0, colSize);
+      y++;
       setTimeout(() => {
-        boardIndeces[randRow][randCol] = 1;
+        x++;
+
+        //console.log(y);
+        console.log("Counter", counter);
+        boardIndeces[randRow][randCol] = counter;
         setBoardIndeces([...boardIndeces]);
       }, 300 * randCol);
-      x++;
-      console.log(randRow);
+
       // console.log(randCol);
       //console.log(x);
     }
+    counter++;
+    //console.log(boardIndeces);
   };
 
-  // Try random seat allocation i - rowLen
-  // j to col len
-  //run until full
+  const onCellClickTopper2 = () => {
+    let x = 0;
+    var sum = 0;
+    for (let i = 0; i < rowSize; i++) {
+      for (let j = 0; j < colSize; j++) {
+        while (x < 120) {
+          let randRow = createRandom(0, rowSize);
+          let randCol = createRandom(0, colSize);
+
+          setTimeout(() => {
+            boardIndeces[randRow][randCol] = 1;
+            setBoardIndeces([...boardIndeces]);
+          }, 300 * j);
+          x += boardIndeces[randRow][randCol];
+          console.log(randRow);
+          // console.log(randCol);
+          //console.log(x);
+        }
+      }
+    }
+  };
 
   // Updating Diagonally
   const onCellClickDia = () => {
@@ -142,7 +175,7 @@ const NewBoard = () => {
             boardIndeces[i][j] = 1;
             setBoardIndeces([...boardIndeces]);
           }, 300 * i);
-          console.log(j);
+          //console.log(j);
         }, 300 * j);
       }
     }
@@ -214,19 +247,23 @@ const NewBoard = () => {
                   {/* {rowIdx} */}
 
                   {row.map((cell, cellIdx) => (
-                    <div
-                      key={cellIdx}
-                      className={
-                        boardIndeces[rowIdx][cellIdx] === 0
-                          ? "inactive_class"
-                          : "cell_Clicked"
-                      }
-                    >
+                    <div key={cellIdx} style={{ marginTop: "5px" }}>
                       <img
-                        src={boardIndeces[rowIdx][cellIdx] === 0 ? Image : Test}
+                        src={
+                          boardIndeces[rowIdx][cellIdx] === 0
+                            ? Seat
+                            : boardIndeces[rowIdx][cellIdx] > 1
+                            ? PersonSeatO
+                            : PersonSeat
+                        }
                         width="35.69px"
                         height="44.69px"
                       ></img>
+                      {/* <img
+                        src={boardIndeces[rowIdx][cellIdx] === 0 ? Seat: PersonSeat}
+                        width="35.69px"
+                        height="44.69px"
+                      ></img> */}
                     </div>
                   ))}
                 </div>
@@ -236,19 +273,16 @@ const NewBoard = () => {
             <div className="dacols">
               {board.map((row, rowIdx) => (
                 <div key={rowIdx} className="row">
-                  {/* {alpArray[rowIdx]} */}
+                  {/* {rowIdx} */}
 
                   {row.map((cell, cellIdx) => (
-                    <div
-                      key={cellIdx}
-                      className={
-                        boardIndeces[rowIdx][cellIdx] === 0
-                          ? "inactive_class"
-                          : "cell_Clicked"
-                      }
-                    >
+                    <div key={cellIdx} style={{ marginTop: "5px" }}>
                       <img
-                        src={boardIndeces[rowIdx][cellIdx] === 0 ? Image : Test}
+                        src={
+                          boardIndeces[rowIdx][cellIdx] === 0
+                            ? Seat
+                            : PersonSeat
+                        }
                         width="35.69px"
                         height="44.69px"
                       ></img>
